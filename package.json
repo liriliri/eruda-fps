@@ -1,0 +1,26 @@
+{
+  "name": "eruda-fps",
+  "version": "1.0.0",
+  "description": "Eruda plugin for displaying fps info ",
+  "main": "eruda-fps.js",
+  "scripts": {
+    "release": "uglifyjs eruda-fps.js -o eruda-fps.min.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/liriliri/eruda-fps.git"
+  },
+  "keywords": [
+    "eruda",
+    "fps"
+  ],
+  "author": "redhoodsu",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/liriliri/eruda-fps/issues"
+  },
+  "homepage": "https://github.com/liriliri/eruda-fps#readme",
+  "devDependencies": {
+    "eruda": "^0.1.0"
+  }
+}

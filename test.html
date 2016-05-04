@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Eruda-fps</title>
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        var canvas = document.createElement('canvas');
+        canvas.width = 512;
+        canvas.height = 512;
+        canvas.style.cssText = 'width: 100%';
+        document.body.appendChild(canvas);
+
+        var ctx = canvas.getContext('2d');
+        ctx.fillStyle = 'rgba(118,162,238,0.05)';
+
+        function animate()
+        {
+            var time = performance.now() / 1000;
+
+            ctx.clearRect( 0, 0, 512, 512 );
+
+            for (var i = 0; i < 2000; i ++)
+            {
+                var x = Math.cos(time + i * 0.01) * 196 + 256;
+                var y = Math.sin(time + i * 0.0504) * 196 + 256;
+
+                ctx.beginPath();
+                ctx.arc(x, y, 10, 0, Math.PI * 2, true);
+                ctx.fill();
+            }
+
+            requestAnimationFrame(animate);
+        }
+        animate();
+    </script>
+    <script src="eruda.js"></script>
+    <script src="eruda-fps.js"></script>
+    <script>
+        eruda.show('fps').show();
+    </script>
+</body>
+</html>
