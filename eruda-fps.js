@@ -21,7 +21,7 @@
         round = Math.round;
 
     util.evalCss([
-        '.eruda-fps {padding: 10px}',
+        '.eruda-fps {padding: 10px !important;}',
         'canvas {width: 100%;}'
     ].join('.eruda-fps '));
 

@@ -1,10 +1,10 @@
 {
   "name": "eruda-fps",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Eruda plugin for displaying fps info ",
   "main": "eruda-fps.js",
   "scripts": {
-    "release": "uglifyjs eruda-fps.js -o eruda-fps.min.js"
+    "release": "uglifyjs eruda-fps.js -o eruda-fps.min.js --mangle"
   },
   "repository": {
     "type": "git",

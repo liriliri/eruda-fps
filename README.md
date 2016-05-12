@@ -5,6 +5,12 @@ Eruda plugin for displaying fps info, inspired by
 
 ![Eruda-fps](http://7xn2zy.com1.z0.glb.clouddn.com/eruda_fps_screenshot.png)
 
+## Demo
+
+![Demo](http://7xn2zy.com1.z0.glb.clouddn.com/eruda_fps_qrcode.png)
+
+Browse it on your phone: [http://liriliri.github.io/eruda-fps/](http://liriliri.github.io/eruda-fps/)
+
 ## Install
 
 ```bash
