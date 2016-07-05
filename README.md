@@ -3,8 +3,6 @@
 Eruda plugin for displaying fps info, inspired by
 [stats.js](https://github.com/mrdoob/stats.js/).
 
-![Eruda-fps](http://7xn2zy.com1.z0.glb.clouddn.com/eruda_fps_screenshot.png)
-
 ## Demo
 
 ![Demo](http://7xn2zy.com1.z0.glb.clouddn.com/eruda_fps_qrcode.png)

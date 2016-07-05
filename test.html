@@ -12,37 +12,192 @@
     </style>
 </head>
 <body>
+    <canvas id="canvas"></canvas>
     <script>
-        var canvas = document.createElement('canvas');
-        canvas.width = 512;
-        canvas.height = 512;
-        canvas.style.cssText = 'width: 100%';
-        document.body.appendChild(canvas);
+        // http://codepen.io/jackrugile/pen/bdwvMo
+        var canvas,
+            ctx,
+            width,
+            height,
+            size,
+            lines,
+            tick;
 
-        var ctx = canvas.getContext('2d');
-        ctx.fillStyle = 'rgba(118,162,238,0.05)';
-
-        function animate()
+        function Line()
         {
-            var time = performance.now() / 1000;
+            this.path = [];
+            this.speed = rand( 10, 20 );
+            this.count = randInt( 10, 30 );
+            this.x = width / 2, + 1;
+            this.y = height / 2 + 1;
+            this.target = { x: width / 2, y: height / 2 };
+            this.dist = 0;
+            this.angle = 0;
+            this.hue = tick / 5;
+            this.life = 1;
+            this.updateAngle();
+            this.updateDist();
+        }
 
-            ctx.clearRect( 0, 0, 512, 512 );
+        Line.prototype.step = function( i )
+        {
+            this.x += Math.cos( this.angle ) * this.speed;
+            this.y += Math.sin( this.angle ) * this.speed;
 
-            for (var i = 0; i < 2000; i ++)
-            {
-                var x = Math.cos(time + i * 0.01) * 196 + 256;
-                var y = Math.sin(time + i * 0.0504) * 196 + 256;
+            this.updateDist();
 
-                ctx.beginPath();
-                ctx.arc(x, y, 10, 0, Math.PI * 2, true);
-                ctx.fill();
+            if( this.dist < this.speed ) {
+                this.x = this.target.x;
+                this.y = this.target.y;
+                this.changeTarget();
             }
 
-            requestAnimationFrame(animate);
+            this.path.push( { x: this.x, y: this.y } );
+            if( this.path.length > this.count ) {
+                this.path.shift();
+            }
+
+            this.life -= 0.001;
+
+            if( this.life <= 0 ) {
+                this.path = null;
+                lines.splice( i, 1 );
+            }
+        };
+
+        Line.prototype.updateDist = function()
+        {
+            var dx = this.target.x - this.x,
+                dy = this.target.y - this.y;
+            this.dist = Math.sqrt( dx * dx + dy * dy );
+        };
+
+        Line.prototype.updateAngle = function()
+        {
+            var dx = this.target.x - this.x,
+                dy = this.target.y - this.y;
+            this.angle = Math.atan2( dy, dx );
+        };
+
+        Line.prototype.changeTarget = function()
+        {
+            var randStart = randInt( 0, 3 );
+            switch( randStart ) {
+                case 0: // up
+                    this.target.y = this.y - size;
+                    break;
+                case 1: // right
+                    this.target.x = this.x + size;
+                    break;
+                case 2: // down
+                    this.target.y = this.y + size;
+                    break;
+                case 3: // left
+                    this.target.x = this.x - size;
+            }
+            this.updateAngle();
+        };
+
+        Line.prototype.draw = function(i)
+        {
+            ctx.beginPath();
+            var rando = rand( 0, 10 );
+            for( var j = 0, length = this.path.length; j < length; j++ ) {
+                ctx[ ( j === 0 ) ? 'moveTo' : 'lineTo' ]( this.path[ j ].x + rand( -rando, rando ), this.path[ j ].y + rand( -rando, rando ) );
+            }
+            ctx.strokeStyle = 'hsla(' + rand( this.hue, this.hue + 30 ) + ', 80%, 55%, ' + ( this.life / 3 ) + ')';
+            ctx.lineWidth = rand( 0.1, 2 );
+            ctx.stroke();
+        };
+
+        function rand( min, max )
+        {
+            return Math.random() * ( max - min ) + min;
         }
-        animate();
+
+        function randInt( min, max )
+        {
+            return Math.floor( min + Math.random() * ( max - min + 1 ) );
+        }
+
+        function init()
+        {
+            canvas = document.getElementById('canvas');
+            ctx = canvas.getContext('2d');
+            size = 30;
+            lines = [];
+            reset();
+            loop();
+        }
+
+        function reset()
+        {
+            width = Math.ceil( window.innerWidth / 2 ) * 2;
+            height = Math.ceil( window.innerHeight / 2 ) * 2;
+            tick = 0;
+
+            lines.length = 0;
+            canvas.width = width;
+            canvas.height = height;
+        }
+
+        function create()
+        {
+            if( tick % 10 === 0 ) {
+                lines.push( new Line());
+            }
+        }
+
+        function step()
+        {
+            var i = lines.length;
+            while( i-- ) {
+                lines[ i ].step( i );
+            }
+        }
+
+        function clear()
+        {
+            ctx.globalCompositeOperation = 'destination-out';
+            ctx.fillStyle = 'hsla(0, 0%, 0%, 0.1)';
+            ctx.fillRect( 0, 0, width, height );
+            ctx.globalCompositeOperation = 'lighter';
+        }
+
+        function draw()
+        {
+            ctx.save();
+            ctx.translate( width / 2, height / 2 );
+            ctx.rotate( tick * 0.001 );
+            ctx.translate( -width / 2, -height / 2 );
+            var i = lines.length;
+            while( i-- ) {
+                lines[ i ].draw( i );
+            }
+            ctx.restore();
+        }
+
+        function loop()
+        {
+            requestAnimationFrame( loop );
+            create();
+            step();
+            clear();
+            draw();
+            tick++;
+        }
+
+        function onresize()
+        {
+            reset();
+        }
+
+        window.addEventListener( 'resize', onresize );
+
+        init();
     </script>
-    <script src="node_modules/eruda/dist/eruda.js"></script>
+    <script src="node_modules/eruda/eruda.js"></script>
+    <script>eruda.init();</script>
     <script src="eruda-fps.js"></script>
     <script>
         eruda.show('fps').show();
