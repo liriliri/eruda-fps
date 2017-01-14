@@ -4,7 +4,7 @@
   "description": "Eruda plugin for displaying fps info ",
   "main": "eruda-fps.js",
   "scripts": {
-    "release": "uglifyjs eruda-fps.js -o eruda-fps.min.js --mangle"
+    "build": "uglifyjs eruda-fps.js -o eruda-fps.min.js --mangle"
   },
   "repository": {
     "type": "git",
