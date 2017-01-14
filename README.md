@@ -5,9 +5,8 @@ Eruda plugin for displaying fps info, inspired by
 
 ## Demo
 
-![Demo](http://7xn2zy.com1.z0.glb.clouddn.com/eruda_fps_qrcode.png)
-
-Browse it on your phone: [http://liriliri.github.io/eruda-fps/](http://liriliri.github.io/eruda-fps/)
+Browse it on your phone: 
+[http://liriliri.github.io/eruda?plugin=fps](http://liriliri.github.io/eruda?plugin=fps)
 
 ## Install
 
@@ -16,11 +15,7 @@ npm install eruda-fps --save
 ```
 
 ```javascript
-(function () {
-    var src = 'node_modules/eruda-fps/eruda-fps.min.js';
-    if (!/eruda=true/.test(window.location) && localStorage.getItem('active-eruda') != 'true') return;
-    document.write('<scr' + 'ipt src="' + src + '"></scr' + 'ipt>');
-})();
+eruda.add(erudaFps);
 ```
 
 > Make sure Eruda is loaded before this plugin, otherwise won't work.
