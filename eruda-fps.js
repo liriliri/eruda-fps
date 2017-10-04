@@ -34,7 +34,7 @@
 
         util.evalCss([
             '.eruda-fps {padding: 10px !important;}',
-            'canvas {width: 100%; box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.05), 0 1px 4px 0 rgba(0, 0, 0, 0.08), 0 3px 1px -2px rgba(0, 0, 0, 0.2);}'
+            'canvas {width: 100%; border-radius: 4px; box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.05), 0 1px 4px 0 rgba(0, 0, 0, 0.08), 0 3px 1px -2px rgba(0, 0, 0, 0.2);}'
         ].join('.eruda-fps '));
 
         return {

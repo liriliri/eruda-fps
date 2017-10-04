@@ -1,0 +1,17 @@
+{
+    "env": {
+        "browser": true,
+        "amd": true,
+        "commonjs": true
+    },
+    "extends": "eslint:recommended",
+    "parserOptions": {
+        "sourceType": "module"
+    },
+    "rules": {
+        "quotes": [
+            "error",
+            "single"
+        ]
+    }
+}
