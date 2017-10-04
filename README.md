@@ -1,10 +1,13 @@
 # eruda-fps
 
 [![NPM version][npm-image]][npm-url]
+[![Build status][travis-image]][travis-url]
 [![License][license-image]][npm-url]
 
 [npm-image]: https://img.shields.io/npm/v/eruda-fps.svg
 [npm-url]: https://npmjs.org/package/eruda-fps
+[travis-image]: https://img.shields.io/travis/liriliri/eruda-fps.svg
+[travis-url]: https://travis-ci.org/liriliri/eruda-fps
 [license-image]: https://img.shields.io/npm/l/eruda-fps.svg
 
 Eruda plugin for displaying fps info, inspired by
