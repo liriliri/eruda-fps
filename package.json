@@ -24,7 +24,7 @@
   },
   "homepage": "https://github.com/liriliri/eruda-fps#readme",
   "devDependencies": {
-    "eruda": "1.2.6",
+    "eruda": "1.3.1",
     "eslint": "^4.8.0",
     "nws": "^1.1.1",
     "uglify-js": "^3.1.3"
