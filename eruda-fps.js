@@ -29,20 +29,20 @@
             NAME = 'FPS';
 
         var util = eruda.util,
+            round = Math.round,
             config = eruda.config,
-            round = Math.round;
+            Tool = eruda.Tool;
 
-        util.evalCss([
-            '.eruda-fps {padding: 10px !important;}',
-            'canvas {width: 100%; border-radius: 4px; box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.05), 0 1px 4px 0 rgba(0, 0, 0, 0.08), 0 3px 1px -2px rgba(0, 0, 0, 0.2);}'
-        ].join('.eruda-fps '));
-
-        return {
+        var Fps = Tool.extend({
             name: 'fps',
-            init: function ($el, parent)
+            init: function ($el, container)
             {
-                this._$el = $el;
+                this.callSuper(Tool, 'init', arguments);
 
+                this._style = util.evalCss([
+                    '.eruda-fps {padding: 10px !important;}',
+                    'canvas {width: 100%; border-radius: 4px; box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.05), 0 1px 4px 0 rgba(0, 0, 0, 0.08), 0 3px 1px -2px rgba(0, 0, 0, 0.2);}'
+                ].join('.eruda-fps '));
                 this._isRunning = false;
                 this._beginTime = util.now();
                 this._prevTime = this._beginTime;
@@ -52,21 +52,25 @@
                 this._alwaysActivated = true;
                 this._appendTpl();
                 this._initCanvas();
-                this._initConfig(parent);
+                this._initCfg(container);
             },
             show: function ()
             {
                 this._start();
-                this._$el.show();
 
-                return this;
+                this.callSuper(Tool, 'show', arguments);
             },
             hide: function ()
             {
                 if (!this._alwaysActivated) this._stop();
-                this._$el.hide();
 
-                return this;
+                this.callSuper(Tool, 'hide', arguments);
+            },
+            destroy: function () 
+            {
+                this._stop();
+                util.evalCss.remove(this._style);
+                this.callSuper(Tool, 'destroy', arguments);
             },
             _start: function ()
             {
@@ -122,13 +126,11 @@
                 ctx.globalAlpha = 0.9;
                 ctx.fillRect(GRAPH_X, GRAPH_Y, GRAPH_WIDTH, GRAPH_HEIGHT);
             },
-            _initConfig: function (parent)
+            _initCfg: function (container)
             {
-                var cfg = this.config = config.create('eruda-fps');
-
-                cfg.set(util.defaults(cfg.get(), {
+                var cfg = this.config = config.create('eruda-fps', {
                     alwaysActivated: true
-                }));
+                });
 
                 if (!cfg.get('alwaysActivated')) this._alwaysActivated = false;
 
@@ -142,7 +144,7 @@
                     }
                 });
 
-                var settings = parent.get('settings');
+                var settings = container.get('settings');
 
                 settings.text('Fps')
                     .switch(cfg, 'alwaysActivated', 'Always Activated')
@@ -190,6 +192,9 @@
                 ctx.globalAlpha = 0.9;
                 ctx.fillRect(GRAPH_X + GRAPH_WIDTH - STEP, GRAPH_Y, STEP, round((1 - (val / maxVal)) * GRAPH_HEIGHT));
             }
-        };
+
+        });
+
+        return new Fps();
     };
 }));
