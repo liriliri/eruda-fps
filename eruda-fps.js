@@ -192,7 +192,6 @@
                 ctx.globalAlpha = 0.9;
                 ctx.fillRect(GRAPH_X + GRAPH_WIDTH - STEP, GRAPH_Y, STEP, round((1 - (val / maxVal)) * GRAPH_HEIGHT));
             }
-
         });
 
         return new Fps();
