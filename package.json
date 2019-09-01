@@ -1,6 +1,6 @@
 {
   "name": "eruda-fps",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "Eruda plugin for displaying fps info ",
   "main": "eruda-fps.js",
   "scripts": {
