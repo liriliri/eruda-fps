@@ -4,3 +4,4 @@
 .eslintrc.json
 .travis.yml
 index.html
+prettier.config.js

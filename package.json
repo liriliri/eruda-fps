@@ -1,13 +1,14 @@
 {
   "name": "eruda-fps",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Eruda plugin for displaying fps info ",
   "main": "eruda-fps.js",
   "scripts": {
     "build": "uglifyjs eruda-fps.js -o eruda-fps.min.js --mangle",
     "lint": "eslint eruda-fps.js",
     "ci": "npm run lint && npm run build",
-    "dev": "nws -p 3000"
+    "dev": "nws -p 3000",
+    "format": "prettier eruda-fps.js --write"
   },
   "repository": {
     "type": "git",
