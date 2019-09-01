@@ -16,7 +16,7 @@ Eruda plugin for displaying fps info, inspired by
 ## Demo
 
 Browse it on your phone: 
-[http://eruda.liriliri.io/](http://eruda.liriliri.io/)
+[http://eruda.liriliri.io/?plugin=fps](http://eruda.liriliri.io/?plugin=fps)
 
 ## Install
 

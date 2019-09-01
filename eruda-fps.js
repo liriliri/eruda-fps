@@ -29,6 +29,7 @@
             NAME = 'FPS';
 
         var util = eruda.util,
+            Settings = eruda.Settings,
             round = Math.round,
             config = eruda.config,
             Tool = eruda.Tool;
@@ -128,7 +129,7 @@
             },
             _initCfg: function (container)
             {
-                var cfg = this.config = config.create('eruda-fps', {
+                var cfg = this.config = Settings.createCfg('eruda-fps', {
                     alwaysActivated: true
                 });
 
