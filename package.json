@@ -6,6 +6,7 @@
   "scripts": {
     "build": "uglifyjs eruda-fps.js -o eruda-fps.min.js --mangle",
     "lint": "eslint eruda-fps.js",
+    "lint:fix": "npm run lint -- --fix",
     "ci": "npm run lint && npm run build",
     "dev": "nws -p 3000",
     "format": "prettier eruda-fps.js --write"
@@ -27,6 +28,7 @@
   "devDependencies": {
     "eruda": "1.5.8",
     "eslint": "^4.8.0",
+    "eslint-config-prettier": "^6.1.0",
     "nws": "^1.1.1",
     "uglify-js": "^3.1.3"
   }

@@ -126,7 +126,7 @@
         ctx.globalAlpha = 0.9
         ctx.fillRect(GRAPH_X, GRAPH_Y, GRAPH_WIDTH, GRAPH_HEIGHT)
       },
-      _initCfg: function(container) {
+      _initCfg: function() {
         var container = this._container
         var cfg = (this.config = Settings.createCfg('fps', {
           alwaysActivated: true
