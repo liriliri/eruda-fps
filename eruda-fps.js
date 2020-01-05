@@ -20,8 +20,6 @@
       GRAPH_Y = 40,
       GRAPH_WIDTH = w - 24,
       GRAPH_HEIGHT = 142,
-      BACK_COLOR = '#fff',
-      FORE_COLOR = '#90caf9',
       STEP = 2,
       NAME = 'FPS'
 
@@ -38,7 +36,7 @@
         this._style = util.evalCss(
           [
             '.eruda-fps {padding: 10px !important;}',
-            'canvas {width: 100%; border-radius: 4px; box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.05), 0 1px 4px 0 rgba(0, 0, 0, 0.08), 0 3px 1px -2px rgba(0, 0, 0, 0.2);}'
+            'canvas {width: 100%; border: 1px solid var(--border);}'
           ].join('.eruda-fps ')
         )
         this._container = container
@@ -106,8 +104,12 @@
         this._ctx = this._canvas.getContext('2d')
       },
       _initCanvas: function() {
-        var canvas = this._canvas,
-          ctx = this._ctx
+        var canvas = this._canvas
+        var ctx = this._ctx
+
+        var curTheme = util.evalCss.getCurTheme()
+        var BACK_COLOR = curTheme.background
+        var FORE_COLOR = curTheme.accent
 
         canvas.width = WIDTH
         canvas.height = HEIGHT
@@ -170,10 +172,14 @@
         this._min = Math.min(this._min, val)
         this._max = Math.max(this._max, val)
 
-        var min = this._min,
-          max = this._max,
-          canvas = this._canvas,
-          ctx = this._ctx
+        var curTheme = util.evalCss.getCurTheme()
+        var BACK_COLOR = curTheme.background
+        var FORE_COLOR = curTheme.accent
+
+        var min = this._min
+        var max = this._max
+        var canvas = this._canvas
+        var ctx = this._ctx
 
         ctx.fillStyle = BACK_COLOR
         ctx.globalAlpha = 1

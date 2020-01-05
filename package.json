@@ -26,10 +26,11 @@
   },
   "homepage": "https://github.com/liriliri/eruda-fps#readme",
   "devDependencies": {
-    "eruda": "1.5.8",
+    "eruda": "^2.0.0",
     "eslint": "^4.8.0",
     "eslint-config-prettier": "^6.1.0",
     "nws": "^1.1.1",
+    "prettier": "^1.19.1",
     "uglify-js": "^3.1.3"
   }
 }
